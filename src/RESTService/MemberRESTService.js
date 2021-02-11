@@ -1,15 +1,20 @@
 import axios from 'axios';
 import config from '../config';
+import TokenService from "../services/token-service"
 const  { LUMS_API_URL } = config;
-
+const option = {
+    headers: {
+        Authorization: 'Bearer ' + TokenService.getAuthToken()
+    }
+};
 class MemberRESTService {
     
     listAllMembers() {
-        return axios.get(LUMS_API_URL + '/members');
+        return axios.get(LUMS_API_URL + '/users');
     }
 
     lookupMemberById(id) {
-        return axios.get(LUMS_API_URL + `/members/${id}`);
+        return axios.get(LUMS_API_URL + `/user/${id}`, option);
     }
 
     lookupMemberByEmail(email){
@@ -29,7 +34,7 @@ class MemberRESTService {
     }
 
     createMember(member) {
-        return axios.post(LUMS_API_URL + '/members', member);
+        return axios.post(LUMS_API_URL + '/auth/signup', member);
     }
 
     changePassword(id, oldPassword, newPassword) {
@@ -43,6 +48,10 @@ class MemberRESTService {
         return axios.post(LUMS_API_URL + `/members/block/${id}` + '?' + params);
     }
 
+    countUser() {
+        return axios.get(LUMS_API_URL + '/users/count');
+    }
+
     unblock(id, adminId) {
         const params = new URLSearchParams({
             adminId: adminId
@@ -51,7 +60,10 @@ class MemberRESTService {
     }
 
     updateMemberEmail(id, newEmail) {
-        return axios.put(LUMS_API_URL + `/members/email/${id}/${newEmail}`);
+        const params = new URLSearchParams({
+            new_email: newEmail
+        });
+        return axios.post(LUMS_API_URL + `/users/email/${id}` + '?' + params, {}, option);
     }
 
     memberLogin(member) {

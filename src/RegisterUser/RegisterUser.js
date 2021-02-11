@@ -26,16 +26,19 @@ class RegisterUser extends Component {
         });
         const member = {
             name: this.state.userName,
+            username: this.state.userName,
             email: this.state.userEmail,
             password: this.state.userPassword,
             role: this.state.userRole
         }
+        console.log(member);
         MemberRESTService.createMember(member)
             .then(res => {
                 this.props.history.push("/person");
             })
             .catch(err => {
                 const error = err.response.data;
+                console.log(err.response.data);
                 this.setState({
                     err: {
                         name: error.name,
@@ -71,10 +74,10 @@ class RegisterUser extends Component {
                             <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="userRole"
                                 value={this.state.userRole} onChange={this.handleChange} required>
                                 <option value="">Choose...</option>
-                                <option value="CUSTOMER">Customer</option>
-                                <option value="ADMIN">Admin</option>
-                                <option value="SUPERUSER">Superuser</option>
-                                <option value="EXPERT">Expert</option>
+                                <option value="ROLE_USER">User</option>
+                                <option value="ROLE_ADMIN">Admin</option>
+                                <option value="ROLE_SUPERUSER">Superuser</option>
+                                <option value="ROLE_EXPERT">Expert</option>
                             </select>
                         </div>
                         <div className="form-group">

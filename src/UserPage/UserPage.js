@@ -32,7 +32,7 @@ class UserPage extends Component {
                     })
             )
             .catch(err => {
-
+                console.log(err.response.data)
             })
     }
 
@@ -42,20 +42,23 @@ class UserPage extends Component {
     }
 
     changeUser = (e) => {
+        e.preventDefault();
+        let wrong_check = false;
         if (this.state.role !== this.state.orgRole) {
             this.changeRole().then(res => {
                 this.setState({orgRole: this.state.role})
-            }).catch(err => {})
+            }).catch(err => {wrong_check = true})
         }
         if (this.state.email.toLowerCase() !== this.state.orgEmail.toLowerCase()) {
             this.changeEmail().then(res => {
                 this.setState({orgEmail: this.state.email})
-            }).catch(err => {})
+            }).catch(err => {console.log(err.response.data); 
+                wrong_check = true})
         }
         if (this.state.blocked !== this.state.orgBlocked) {
             this.changeBlock().then(res => {
                 this.setState({orgBlocked: this.state.blocked})
-            }).catch(err => {})
+            }).catch(err => {wrong_check = true})
         }
     }
 
@@ -130,8 +133,8 @@ class UserPage extends Component {
                             <td>
                                 <select className="custom-select mr-1" id="roleSelect" name="role" value={this.state.role}
                                     onChange={this.handleChange} required>
-                                    <option value="CUSTOMER">Customer</option>
-                                    <option value="ADMIN">Admin</option>
+                                    <option value="ROLE_USER">User</option>
+                                    <option value="ROLE_ADMIN">Admin</option>
                                 </select>
                             </td>
                             <td>
