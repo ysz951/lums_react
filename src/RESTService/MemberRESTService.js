@@ -5,7 +5,7 @@ const  { LUMS_API_URL } = config;
 class MemberRESTService {
     
     listAllMembers() {
-        return axios.get(LUMS_API_URL + '/members');
+        return axios.get(LUMS_API_URL + '/users');
     }
 
     lookupMemberById(id) {
@@ -29,7 +29,7 @@ class MemberRESTService {
     }
 
     createMember(member) {
-        return axios.post(LUMS_API_URL + '/members', member);
+        return axios.post(LUMS_API_URL + '/auth/signup', member);
     }
 
     changePassword(id, oldPassword, newPassword) {
@@ -41,6 +41,10 @@ class MemberRESTService {
             adminId: adminId
         });
         return axios.post(LUMS_API_URL + `/members/block/${id}` + '?' + params);
+    }
+
+    countUser() {
+        return axios.get(LUMS_API_URL + '/users/count');
     }
 
     unblock(id, adminId) {
