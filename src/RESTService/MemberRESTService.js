@@ -1,7 +1,12 @@
 import axios from 'axios';
 import config from '../config';
+import TokenService from "../services/token-service"
 const  { LUMS_API_URL } = config;
-
+const option = {
+    headers: {
+        Authorization: 'Bearer ' + TokenService.getAuthToken()
+    }
+};
 class MemberRESTService {
     
     listAllMembers() {
@@ -9,7 +14,7 @@ class MemberRESTService {
     }
 
     lookupMemberById(id) {
-        return axios.get(LUMS_API_URL + `/members/${id}`);
+        return axios.get(LUMS_API_URL + `/user/${id}`, option);
     }
 
     lookupMemberByEmail(email){
@@ -55,7 +60,10 @@ class MemberRESTService {
     }
 
     updateMemberEmail(id, newEmail) {
-        return axios.put(LUMS_API_URL + `/members/email/${id}/${newEmail}`);
+        const params = new URLSearchParams({
+            new_email: newEmail
+        });
+        return axios.post(LUMS_API_URL + `/users/email/${id}` + '?' + params, {}, option);
     }
 
     memberLogin(member) {
