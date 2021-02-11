@@ -55,7 +55,7 @@ class MemberRESTService {
     }
 
     memberLogin(member) {
-        return axios.post(LUMS_API_URL + '/members/login', member);
+        return axios.post(LUMS_API_URL + '/auth/signin', member);
     }
 
 }

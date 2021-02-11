@@ -21,11 +21,12 @@ class Login extends Component {
         e.preventDefault();
         this.setState({err: null});
         const member = {
-            email: this.state.email,
+            usernameOrEmail: this.state.email,
             password: this.state.password
         }
         MemberRESTService.memberLogin(member)
             .then(res => {
+                console.log(res.data);
                 TokenService.saveAuthToken(res.data.id);
                 localStorage.setItem('Role', res.data.role);
                 return res;
