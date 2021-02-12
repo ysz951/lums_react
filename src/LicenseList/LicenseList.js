@@ -41,6 +41,7 @@ class LicenseList extends Component {
         e.preventDefault();
         if (this.state.filter_duration !== "All") {
             LicenseRESTService.listAllLicenseByDuration(this.state.filter_duration).then(res => {
+                console.log(res.data);
                 this.setState({
                     licenses: res.data
                 })
