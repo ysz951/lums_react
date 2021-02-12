@@ -27,10 +27,9 @@ class MemberRESTService {
 
     modifyUserRole(id, adminId, newRole) {
         const params = new URLSearchParams({
-            adminId: adminId,
             newRole: newRole
         });
-        return axios.post(LUMS_API_URL + `/members/${id}/modify_role` + '?' + params);
+        return axios.post(LUMS_API_URL + `/users/${id}/modify_role` + '?' + params, {}, option);
     }
 
     createMember(member) {
