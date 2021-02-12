@@ -25,7 +25,7 @@ class MemberRESTService {
         return axios.get(LUMS_API_URL + '/members?role=ADMIN');
     }
 
-    modifyUserRole(id, adminId, newRole) {
+    modifyUserRole(id, newRole) {
         const params = new URLSearchParams({
             newRole: newRole
         });
@@ -40,22 +40,16 @@ class MemberRESTService {
         return axios.post(LUMS_API_URL + `/members/password/${id}/${oldPassword}/${newPassword}`);
     }
 
-    block(id, adminId) {
-        const params = new URLSearchParams({
-            adminId: adminId
-        });
-        return axios.post(LUMS_API_URL + `/members/block/${id}` + '?' + params);
+    block(id) {
+        return axios.post(LUMS_API_URL + `/users/block/${id}`, {}, option);
     }
 
     countUser() {
         return axios.get(LUMS_API_URL + '/users/count');
     }
 
-    unblock(id, adminId) {
-        const params = new URLSearchParams({
-            adminId: adminId
-        });
-        return axios.post(LUMS_API_URL + `/members/unblock/${id}` + '?' + params);
+    unblock(id) {
+        return axios.post(LUMS_API_URL + `/users/unblock/${id}`, {}, option);
     }
 
     updateMemberEmail(id, newEmail) {
