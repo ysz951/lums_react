@@ -25,7 +25,7 @@ class UserLog extends Component {
                 <td>{item.user}</td>
                 <td>{item.admin}</td>
                 <td>{item.log}</td>
-                <td>{moment(item.time).format('YYYY-MM-DD HH:mm:ss')}</td>
+                <td>{moment(item.createdAt).format('YYYY-MM-DD HH:mm:ss')}</td>
                 <td>{item.prevRole}</td>
                 <td>{item.newRole}</td>
             </tr>
