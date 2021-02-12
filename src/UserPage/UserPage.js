@@ -64,15 +64,15 @@ class UserPage extends Component {
 
     changeRole = () => {
         const { id } = this.props.match.params;
-        return MemberRESTService.modifyUserRole(id, id, this.state.role);
+        return MemberRESTService.modifyUserRole(id, this.state.role);
     }
 
     changeBlock = () => {
         const { id } = this.props.match.params;
         if (this.state.blocked === "false") {
-            return MemberRESTService.unblock(id, id);
+            return MemberRESTService.unblock(id);
         }
-        return MemberRESTService.block(id, id);
+        return MemberRESTService.block(id);
     }
 
     changeEmail = () => {
