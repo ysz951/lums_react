@@ -25,12 +25,11 @@ class UserPage extends Component {
                     blocked: user.blocked.toString(),
                     orgBlocked: user.blocked.toString()
                 })
-            }).then(
-                SaleRESTService.listUserSales(id)
-                    .then(res => {
-                        this.setState({ sales: res.data });
-                    })
-            )
+                return SaleRESTService.listUserSales(id);
+            })
+            .then(res => {
+                this.setState({ sales: res.data });
+            })
             .catch(err => {
                 console.log(err.response.data)
             })
