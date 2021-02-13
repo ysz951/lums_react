@@ -12,11 +12,8 @@ class LicenseRESTService {
         return axios.post(LUMS_API_URL + '/license', license, option);
     }
 
-    purChaseLicense(id, userId) {
-        const params = new URLSearchParams({
-            userId: userId
-        });
-        return axios.post(LUMS_API_URL + `/license/${id}/purchase` + "?" + params);
+    purChaseLicense(id) {
+        return axios.post(LUMS_API_URL + `/license/${id}/purchase`, {}, option);
     }
 
     setLicensePrice(id, price) {

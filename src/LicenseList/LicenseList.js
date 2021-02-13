@@ -24,6 +24,16 @@ class LicenseList extends Component {
             })
     }
 
+    purchase = (id) => {
+        LicenseRESTService.purChaseLicense(id)
+            .then(res => {
+                
+            })
+            .catch(err => {
+
+            })
+    }
+
     renderLicenses() {
         return this.state.licenses.map((item, i) =>
             <tr key={i}>
@@ -33,6 +43,7 @@ class LicenseList extends Component {
                 <td>{item.price}</td>
                 <td>{item.duration}</td>
                 <td><Link className="badge badge-secondary" to={`/license/${item.id}`}>View</Link></td>
+                <td><button onClick={() => this.purchase(item.id)} className="btn btn-primary">Done</button></td>
             </tr>
         )
     }
@@ -157,6 +168,7 @@ class LicenseList extends Component {
                             <th scope="col"><button type="button" onClick={this.sortByPrice} className="cursor">Price</button></th>
                             <th scope="col">Duration</th>
                             <th scope="col">Detail</th>
+                            <th scope="col">Purchase</th>
                         </tr>
                     </thead>
                     <tbody>

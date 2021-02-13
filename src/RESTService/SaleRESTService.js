@@ -1,7 +1,12 @@
 import axios from 'axios';
 import config from '../config';
+import TokenService from "../services/token-service";
 const  { LUMS_API_URL } = config;
-
+const option = {
+    headers: {
+        Authorization: 'Bearer ' + TokenService.getAuthToken()
+    }
+};
 class SaleRESTService {
     
     listAllSales() {
@@ -9,15 +14,15 @@ class SaleRESTService {
     }
 
     listUserSales(id) {
-        return axios.get(LUMS_API_URL + '/sale?userId=' + id);
+        return axios.get(LUMS_API_URL + '/sale/user?userId=' + id, option);
     }
 
     createNewSale(sale) {
-        return axios.post(LUMS_API_URL + '/sale', sale);
+        return axios.post(LUMS_API_URL + '/sale', sale, option);
     }
 
     changeSaleActive(id, newActive) {
-        return axios.put(LUMS_API_URL + `/sale/active/${id}/${newActive}`);
+        return axios.put(LUMS_API_URL + `/sale/active/${id}/${newActive}`, {}, option);
     }
 
     changeSaleExpiration(id, year, month, day) {
@@ -26,7 +31,8 @@ class SaleRESTService {
             month: month,
             day: day
         });
-        return axios.put(LUMS_API_URL + `/sale/set/${id}/expirationdate` + '?' + params);
+        console.log(LUMS_API_URL + `/sale/${id}/expirationdate` + '?' + params);
+        return axios.put(LUMS_API_URL + `/sale/${id}/expirationdate` + '?' + params, {}, option);
     }
 
     findSaleById(id) {

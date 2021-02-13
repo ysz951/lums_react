@@ -12,6 +12,7 @@ class SaleList extends Component {
     componentDidMount() {
         SaleRESTService.listAllSales()
             .then(res => {
+                console.log(res.data);
                 this.setState({
                     sales: res.data,
                     orgSales: res.data
