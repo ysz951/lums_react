@@ -9,7 +9,7 @@ const option = {
 };
 class LogRESTService {
     listAllLogs() {
-        return axios.get(LUMS_API_URL + `/log`);
+        return axios.get(LUMS_API_URL + `/log`, option);
     }
 
     listAllLogsByUser(userId) {
@@ -24,7 +24,7 @@ class LogRESTService {
             userId: userId,
             licenseId: licenseId
         });
-        return axios.get(LUMS_API_URL + `/log/by_user_and_license` + "?" + params);
+        return axios.get(LUMS_API_URL + `/log/by_user_and_license` + "?" + params, option);
     }
     
 }
