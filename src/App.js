@@ -19,6 +19,7 @@ import Header from './Header/Header';
 import HomePage from './HomePage/HomePage';
 import SalePage from './SalePage/SalePage';
 import LicenseListHooks from './LicenseList/LicenseListHooks';
+import LicensePageHooks from './LicensePage/LicensePageHooks';
 class App extends Component {
 
   render() {
@@ -37,7 +38,9 @@ class App extends Component {
           <PublicOnlyRoute path="/register_user" component={RegisterUser} />
           <PrivateRoute exact path="/license" component={LicenseListHooks} />
           {/* <PrivateRoute exact path="/license" component={LicenseList} /> */}
-          <PrivateRoute exact path="/license/:id" component={LicensePage} />
+          {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
+          <PrivateRoute exact path="/license/:id" component={LicensePageHooks} />
+          {/* <LicensePageHooks></LicensePageHooks> */}
           <PrivateRoute exact path="/sale" component={SaleList} />
           <PrivateRoute exact path="/sale/:id" component={SalePage} />
           <PrivateRoute exact path="/log" component={LogList} />
