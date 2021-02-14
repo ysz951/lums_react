@@ -20,6 +20,7 @@ import HomePage from './HomePage/HomePage';
 import SalePage from './SalePage/SalePage';
 import LicenseListHooks from './LicenseList/LicenseListHooks';
 import LicensePageHooks from './LicensePage/LicensePageHooks';
+import LoginHooks from './Login/LoginHooks';
 class App extends Component {
 
   render() {
@@ -31,7 +32,9 @@ class App extends Component {
         </Switch>
         <Switch>
           <PublicOnlyRoute exact path="/" component={HomePage}/>
-          <PublicOnlyRoute exact path="/login" component={Login} />
+          {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
+          <PublicOnlyRoute exact path="/login" component={LoginHooks} />
+          {/* <LoginHooks></LoginHooks> */}
           <PrivateRoute exact path="/person" component={UserList} />
           <PrivateRoute exact path="/person/:id" component={UserPage}/>
           <PrivateRoute path="/person/:id/log" component={UserLog}/>
