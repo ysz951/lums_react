@@ -25,7 +25,7 @@ class HomePage extends Component {
     componentDidMount = () => {
         MemberRESTService.countUser()
             .then(res => this.setState({number: res.data.count}))
-            .catch(err => console(err));
+            .catch(err => console.log(err));
         // const wsProtocol = window.location.protocol == "https:" ? "wss" : "ws";
         // const wsURI = wsProtocol + '://' + "localhost:8080/lums" + "/websocket/helloName";
         // const websocket = new WebSocket(wsURI);
