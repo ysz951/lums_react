@@ -37,7 +37,12 @@ class MemberRESTService {
     }
 
     changePassword(id, oldPassword, newPassword) {
-        return axios.post(LUMS_API_URL + `/members/password/${id}/${oldPassword}/${newPassword}`);
+        const data = {oldPassword, newPassword}
+        const params = new URLSearchParams({
+            user_id: id
+        });
+        console.log(data);
+        return axios.post(LUMS_API_URL + `/users/password` + '?' + params, data, option);
     }
 
     block(id) {

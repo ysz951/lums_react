@@ -5,9 +5,11 @@ import { withRouter, Link } from 'react-router-dom';
 class ResetPassword extends Component{
     state = {
         userName: "",
-        originalPassword: "",
-        password: "password",
-        confirmedPassword: "confPassword",
+        // originalPassword: "",
+        // password: "password",
+        // confirmedPassword: "confPassword",
+        oldPassword: "",
+        newPassword: "",
         passwordSet: false,
         id: "",
     }
@@ -38,10 +40,17 @@ class ResetPassword extends Component{
     }
 
     onSubmit(){
-        if(this.state.password === this.state.confirmedPassword){
-            MemberRESTService.changePassword(this.state.id, this.state.originalPassword, this.state.password);
-            this.setState({passwordSet: true});
-        }
+        // if(this.state.password === this.state.confirmedPassword){
+            
+        // }
+        MemberRESTService.changePassword(this.state.id, this.state.oldPassword, this.state.newPassword)
+            .then(res => {
+                this.setState({passwordSet: true});
+            })
+            .catch(err => {
+                console.log(err.response.data);
+            })
+        
     }
 
     render(){
@@ -56,12 +65,12 @@ class ResetPassword extends Component{
                 </div>
                 <div>
                     <label>Password: </label>
-                    <input type="password" className="form-control" id="exampleInputPassword1" name="password" onChange={this.handleChange} />
+                    <input type="password" className="form-control" id="exampleInputPassword1" name="oldPassword" onChange={this.handleChange} />
 
                 </div>
                 <div>
                     <label>Confirm Password: </label>
-                    <input type="password" className="form-control" id="exampleInputPassword2" name="confirmedPassword" onChange={this.handleChange} />
+                    <input type="password" className="form-control" id="exampleInputPassword2" name="newPassword" onChange={this.handleChange} />
 
                 </div>
                 <div>
