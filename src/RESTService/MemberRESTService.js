@@ -22,7 +22,7 @@ class MemberRESTService {
     }
 
     getAdminMembers(){
-        return axios.get(LUMS_API_URL + '/members?role=ADMIN');
+        return axios.get(LUMS_API_URL + '/users/role/ROLE_ADMIN', option);
     }
 
     modifyUserRole(id, newRole) {
