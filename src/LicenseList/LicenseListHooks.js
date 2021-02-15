@@ -8,7 +8,7 @@ function LicenseListHooks(props) {
     const [price, setPrice] = useState(0);
     const [duration, setDuration] = useState("");
     const [filter_duration, setFilter_duration] = useState("All");
-    const [role, setRole] = useContext(Context);
+    const {role} = useContext(Context);
     console.log(role);
     useEffect(() => {
         LicenseRESTService.listAllLicense()

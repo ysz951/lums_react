@@ -5,7 +5,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import Context from '../Context/Context';
 import { Link } from 'react-router-dom';
 function LoginHooks() {
-    const [role, setRole] = useContext(Context);
+    const {setRole} = useContext(Context);
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
     const [err, setErr] = useState(null);

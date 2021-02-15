@@ -21,17 +21,21 @@ import SalePage from './SalePage/SalePage';
 import LicenseListHooks from './LicenseList/LicenseListHooks';
 import LicensePageHooks from './LicensePage/LicensePageHooks';
 import LoginHooks from './Login/LoginHooks';
+import HeaderHooks from './Header/HeaderHooks';
+import HomePageHooks from './HomePage/HomePageHooks';
 class App extends Component {
 
   render() {
     return (
       <>
         <Switch>
-          <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/>
+          {/* <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/> */}
+          <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={HeaderHooks}/>
           <Route component={NoContent}/>
         </Switch>
         <Switch>
-          <PublicOnlyRoute exact path="/" component={HomePage}/>
+          {/* <PublicOnlyRoute exact path="/" component={HomePage}/> */}
+          <PublicOnlyRoute exact path="/" component={HomePageHooks}/>
           {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
           <PublicOnlyRoute exact path="/login" component={LoginHooks} />
           {/* <LoginHooks></LoginHooks> */}
