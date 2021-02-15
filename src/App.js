@@ -23,6 +23,7 @@ import LicensePageHooks from './LicensePage/LicensePageHooks';
 import LoginHooks from './Login/LoginHooks';
 import HeaderHooks from './Header/HeaderHooks';
 import HomePageHooks from './HomePage/HomePageHooks';
+import UserListHooks from './UserList/UserListHooks';
 class App extends Component {
 
   render() {
@@ -38,8 +39,8 @@ class App extends Component {
           <PublicOnlyRoute exact path="/" component={HomePageHooks}/>
           {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
           <PublicOnlyRoute exact path="/login" component={LoginHooks} />
-          {/* <LoginHooks></LoginHooks> */}
-          <PrivateRoute exact path="/person" component={UserList} />
+          {/* <PrivateRoute exact path="/person" component={UserList} /> */}
+          <PrivateRoute exact path="/person" component={UserListHooks} /> 
           <PrivateRoute exact path="/person/:id" component={UserPage}/>
           <PrivateRoute path="/person/:id/log" component={UserLog}/>
           <PublicOnlyRoute path="/register_user" component={RegisterUser} />
