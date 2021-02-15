@@ -1,13 +1,15 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import LicenseRESTService from '../RESTService/LicenseRESTService';
 import { Link } from 'react-router-dom';
-
+import Context from '../Context/Context';
 function LicenseListHooks(props) {
     const [licenses, setLicenses] = useState([]);
     const [dol, setDol] = useState("");
     const [price, setPrice] = useState(0);
     const [duration, setDuration] = useState("");
     const [filter_duration, setFilter_duration] = useState("All");
+    const {role} = useContext(Context);
+    console.log(role);
     useEffect(() => {
         LicenseRESTService.listAllLicense()
             .then(res => {

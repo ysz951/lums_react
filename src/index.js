@@ -7,12 +7,16 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.min.js';
 import 'jquery/src/jquery'; //for bootstrap.min.js
 import { BrowserRouter } from 'react-router-dom';
-
+import { ContextProvider } from './Context/Context';
 ReactDOM.render(
   <React.StrictMode>
+
     <BrowserRouter>
-      <App />
+      <ContextProvider>
+        <App />
+      </ContextProvider>
     </BrowserRouter>
+
   </React.StrictMode>,
   document.getElementById('root')
 );

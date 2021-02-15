@@ -9,37 +9,10 @@ class HomePage extends Component {
         number: 0
     }
 
-    connect = (server) => {
-        return new Promise(function(resolve, reject) {
-            server.onopen = function() {
-                console.log("open");
-                resolve(server);
-            };
-            server.onerror = function(err) {
-                reject(err);
-            };
-    
-        });
-    }
-
     componentDidMount = () => {
         MemberRESTService.countUser()
             .then(res => this.setState({number: res.data.count}))
             .catch(err => console.log(err));
-        // const wsProtocol = window.location.protocol == "https:" ? "wss" : "ws";
-        // const wsURI = wsProtocol + '://' + "localhost:8080/lums" + "/websocket/helloName";
-        // const websocket = new WebSocket(wsURI);
-
-        // this.connect(websocket)
-        //     .then(() => {
-        //         console.log("ok")
-        //         websocket.send("");
-        //         websocket.onmessage = event => {
-        //             console.log(event.data);
-        //             this.setState({number: event.data}) 
-        //         }
-        //     })
-        //     .catch(err => console.log(err));
     }
 
     render() {

@@ -5,7 +5,7 @@ import TokenService from '../services/token-service';
 class Header extends Component {
     handleLogoutClick = () => {
         TokenService.clearAuthToken();
-        this.forceUpdate();
+        // this.forceUpdate();
     }
 
     render() {

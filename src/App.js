@@ -20,19 +20,27 @@ import HomePage from './HomePage/HomePage';
 import SalePage from './SalePage/SalePage';
 import LicenseListHooks from './LicenseList/LicenseListHooks';
 import LicensePageHooks from './LicensePage/LicensePageHooks';
+import LoginHooks from './Login/LoginHooks';
+import HeaderHooks from './Header/HeaderHooks';
+import HomePageHooks from './HomePage/HomePageHooks';
+import UserListHooks from './UserList/UserListHooks';
 class App extends Component {
 
   render() {
     return (
       <>
         <Switch>
-          <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/>
+          {/* <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/> */}
+          <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={HeaderHooks}/>
           <Route component={NoContent}/>
         </Switch>
         <Switch>
-          <PublicOnlyRoute exact path="/" component={HomePage}/>
-          <PublicOnlyRoute exact path="/login" component={Login} />
-          <PrivateRoute exact path="/person" component={UserList} />
+          {/* <PublicOnlyRoute exact path="/" component={HomePage}/> */}
+          <PublicOnlyRoute exact path="/" component={HomePageHooks}/>
+          {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
+          <PublicOnlyRoute exact path="/login" component={LoginHooks} />
+          {/* <PrivateRoute exact path="/person" component={UserList} /> */}
+          <PrivateRoute exact path="/person" component={UserListHooks} /> 
           <PrivateRoute exact path="/person/:id" component={UserPage}/>
           <PrivateRoute path="/person/:id/log" component={UserLog}/>
           <PublicOnlyRoute path="/register_user" component={RegisterUser} />

@@ -26,6 +26,7 @@ class Login extends Component {
         }
         MemberRESTService.memberLogin(member)
             .then(res => {
+                console.log(res.data);
                 TokenService.saveAuthToken(res.data.accessToken);
                 localStorage.setItem('Role', res.data.role);
                 return res;
