@@ -25,6 +25,7 @@ import HeaderHooks from './Header/HeaderHooks';
 import HomePageHooks from './HomePage/HomePageHooks';
 import UserListHooks from './UserList/UserListHooks';
 import ResetPWHooks from './AdminResetPW/ResetPWHooks';
+import ResetPasswordHooks from './ResetPassword/ResetPasswordHooks';
 class App extends Component {
 
   render() {
@@ -56,7 +57,9 @@ class App extends Component {
           <PrivateRoute path="/person/:id/email" component={ManualEmail} />
           {/* <PrivateRoute exact path="/adminResetPW" component={AdminResetPW} /> */}
           <PrivateRoute exact path="/adminResetPW" component={ResetPWHooks}/>
-          <PrivateRoute path="/adminResetPW/:id" component={ResetPassword} />
+          {/* <PrivateRoute path="/adminResetPW/:id" component={ResetPassword} /> */}
+          <PrivateRoute path="/adminResetPW/:id" component={ResetPasswordHooks} />
+          
           <Route component={NotFoundPage} /> 
         </Switch>
       </>
