@@ -30,7 +30,7 @@ function LoginHooks() {
         }
         MemberRESTService.memberLogin(member)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 TokenService.saveAuthToken(res.data.accessToken);
                 setRole(res.data.role);
                 return res;

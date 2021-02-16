@@ -11,16 +11,21 @@ export const ContextProvider = props => {
             setRole(localStorage.getItem('role'));
         }
     }, []);
-    const logout = () => {
-        localStorage.removeItem('role');
-    }
     useEffect(() => {
         if (role.length) {
             localStorage.setItem('role', role);
         }
     }, [role]);
+    const logout = () => {
+        localStorage.removeItem('role');
+    }
+    const value = {
+        role,
+        setRole,
+        logout
+    }
     return (
-        <Context.Provider value={{ role, setRole, logout }}>
+        <Context.Provider value={value}>
             {props.children}
         </Context.Provider>
     )
