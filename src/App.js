@@ -26,6 +26,7 @@ import HomePageHooks from './HomePage/HomePageHooks';
 import UserListHooks from './UserList/UserListHooks';
 import ResetPWHooks from './AdminResetPW/ResetPWHooks';
 import ResetPasswordHooks from './ResetPassword/ResetPasswordHooks';
+import SaleListHooks from './SaleList/SaleListHooks';
 class App extends Component {
 
   render() {
@@ -51,7 +52,8 @@ class App extends Component {
           {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
           <PrivateRoute exact path="/license/:id" component={LicensePageHooks} />
           {/* <LicensePageHooks></LicensePageHooks> */}
-          <PrivateRoute exact path="/sale" component={SaleList} />
+          {/* <PrivateRoute exact path="/sale" component={SaleList} /> */}
+          <PrivateRoute exact path="/sale" component={SaleListHooks} />
           <PrivateRoute exact path="/sale/:id" component={SalePage} />
           <PrivateRoute exact path="/log" component={LogList} />
           <PrivateRoute path="/person/:id/email" component={ManualEmail} />
