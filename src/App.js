@@ -28,6 +28,7 @@ import ResetPWHooks from './AdminResetPW/ResetPWHooks';
 import ResetPasswordHooks from './ResetPassword/ResetPasswordHooks';
 import SaleListHooks from './SaleList/SaleListHooks';
 import SalePageHooks from './SalePage/SalePageHooks';
+import LogListHooks from './LogList/LogListHooks';
 class App extends Component {
 
   render() {
@@ -57,7 +58,8 @@ class App extends Component {
           <PrivateRoute exact path="/sale" component={SaleListHooks} />
           {/* <PrivateRoute exact path="/sale/:id" component={SalePage} /> */}
           <PrivateRoute exact path="/sale/:id" component={SalePageHooks} />
-          <PrivateRoute exact path="/log" component={LogList} />
+          {/* <PrivateRoute exact path="/log" component={LogList} /> */}
+          <PrivateRoute exact path="/log" component={LogListHooks} />
           <PrivateRoute path="/person/:id/email" component={ManualEmail} />
           {/* <PrivateRoute exact path="/adminResetPW" component={AdminResetPW} /> */}
           <PrivateRoute exact path="/adminResetPW" component={ResetPWHooks}/>
