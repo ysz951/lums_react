@@ -26,45 +26,53 @@ import HomePageHooks from './HomePage/HomePageHooks';
 import UserListHooks from './UserList/UserListHooks';
 import ResetPWHooks from './AdminResetPW/ResetPWHooks';
 import ResetPasswordHooks from './ResetPassword/ResetPasswordHooks';
-class App extends Component {
+import SaleListHooks from './SaleList/SaleListHooks';
+import SalePageHooks from './SalePage/SalePageHooks';
+import LogListHooks from './LogList/LogListHooks';
+import RegisterUserHooks from './RegisterUser/RegisterUserHooks';
+import UserLogHooks from './UserLog/UserLogHooks';
 
-  render() {
-    return (
-      <>
-        <Switch>
-          {/* <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/> */}
-          <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={HeaderHooks}/>
-          <Route component={NoContent}/>
-        </Switch>
-        <Switch>
-          {/* <PublicOnlyRoute exact path="/" component={HomePage}/> */}
-          <PublicOnlyRoute exact path="/" component={HomePageHooks}/>
-          {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
-          <PublicOnlyRoute exact path="/login" component={LoginHooks} />
-          {/* <PrivateRoute exact path="/person" component={UserList} /> */}
-          <PrivateRoute exact path="/person" component={UserListHooks} /> 
-          <PrivateRoute exact path="/person/:id" component={UserPage}/>
-          <PrivateRoute path="/person/:id/log" component={UserLog}/>
-          <PublicOnlyRoute path="/register_user" component={RegisterUser} />
-          <PrivateRoute exact path="/license" component={LicenseListHooks} />
-          {/* <PrivateRoute exact path="/license" component={LicenseList} /> */}
-          {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
-          <PrivateRoute exact path="/license/:id" component={LicensePageHooks} />
-          {/* <LicensePageHooks></LicensePageHooks> */}
-          <PrivateRoute exact path="/sale" component={SaleList} />
-          <PrivateRoute exact path="/sale/:id" component={SalePage} />
-          <PrivateRoute exact path="/log" component={LogList} />
-          <PrivateRoute path="/person/:id/email" component={ManualEmail} />
-          {/* <PrivateRoute exact path="/adminResetPW" component={AdminResetPW} /> */}
-          <PrivateRoute exact path="/adminResetPW" component={ResetPWHooks}/>
-          {/* <PrivateRoute path="/adminResetPW/:id" component={ResetPassword} /> */}
-          <PrivateRoute path="/adminResetPW/:id" component={ResetPasswordHooks} />
-          
-          <Route component={NotFoundPage} /> 
-        </Switch>
-      </>
-    )
-  }
+function App () {
+  return (
+    <>
+      <Switch>
+        {/* <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/> */}
+        <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={HeaderHooks} />
+        <Route component={NoContent} />
+      </Switch>
+      <Switch>
+        {/* <PublicOnlyRoute exact path="/" component={HomePage}/> */}
+        <PublicOnlyRoute exact path="/" component={HomePageHooks} />
+        {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
+        <PublicOnlyRoute exact path="/login" component={LoginHooks} />
+        {/* <PrivateRoute exact path="/person" component={UserList} /> */}
+        <PrivateRoute exact path="/person" component={UserListHooks} />
+        <PrivateRoute exact path="/person/:id" component={UserPage} />
+        {/* <PrivateRoute path="/person/:id/log" component={UserLog}/> */}
+        <PrivateRoute path="/person/:id/log" component={UserLogHooks} />
+        {/* <PublicOnlyRoute path="/register_user" component={RegisterUser} /> */}
+        <PublicOnlyRoute path="/register_user" component={RegisterUserHooks} />
+        <PrivateRoute exact path="/license" component={LicenseListHooks} />
+        {/* <PrivateRoute exact path="/license" component={LicenseList} /> */}
+        {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
+        <PrivateRoute exact path="/license/:id" component={LicensePageHooks} />
+        {/* <LicensePageHooks></LicensePageHooks> */}
+        {/* <PrivateRoute exact path="/sale" component={SaleList} /> */}
+        <PrivateRoute exact path="/sale" component={SaleListHooks} />
+        {/* <PrivateRoute exact path="/sale/:id" component={SalePage} /> */}
+        <PrivateRoute exact path="/sale/:id" component={SalePageHooks} />
+        {/* <PrivateRoute exact path="/log" component={LogList} /> */}
+        <PrivateRoute exact path="/log" component={LogListHooks} />
+        <PrivateRoute path="/person/:id/email" component={ManualEmail} />
+        {/* <PrivateRoute exact path="/adminResetPW" component={AdminResetPW} /> */}
+        <PrivateRoute exact path="/adminResetPW" component={ResetPWHooks} />
+        {/* <PrivateRoute path="/adminResetPW/:id" component={ResetPassword} /> */}
+        <PrivateRoute path="/adminResetPW/:id" component={ResetPasswordHooks} />
+
+        <Route component={NotFoundPage} />
+      </Switch>
+    </>
+  )
 }
 
 function NoContent() {
