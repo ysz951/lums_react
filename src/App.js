@@ -30,6 +30,7 @@ import SaleListHooks from './SaleList/SaleListHooks';
 import SalePageHooks from './SalePage/SalePageHooks';
 import LogListHooks from './LogList/LogListHooks';
 import RegisterUserHooks from './RegisterUser/RegisterUserHooks';
+import UserLogHooks from './UserLog/UserLogHooks';
 class App extends Component {
 
   render() {
@@ -48,7 +49,8 @@ class App extends Component {
           {/* <PrivateRoute exact path="/person" component={UserList} /> */}
           <PrivateRoute exact path="/person" component={UserListHooks} /> 
           <PrivateRoute exact path="/person/:id" component={UserPage}/>
-          <PrivateRoute path="/person/:id/log" component={UserLog}/>
+          {/* <PrivateRoute path="/person/:id/log" component={UserLog}/> */}
+          <PrivateRoute path="/person/:id/log" component={UserLogHooks}/>
           {/* <PublicOnlyRoute path="/register_user" component={RegisterUser} /> */}
           <PublicOnlyRoute path="/register_user" component={RegisterUserHooks} />
           <PrivateRoute exact path="/license" component={LicenseListHooks} />
