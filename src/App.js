@@ -29,6 +29,7 @@ import ResetPasswordHooks from './ResetPassword/ResetPasswordHooks';
 import SaleListHooks from './SaleList/SaleListHooks';
 import SalePageHooks from './SalePage/SalePageHooks';
 import LogListHooks from './LogList/LogListHooks';
+import RegisterUserHooks from './RegisterUser/RegisterUserHooks';
 class App extends Component {
 
   render() {
@@ -48,7 +49,8 @@ class App extends Component {
           <PrivateRoute exact path="/person" component={UserListHooks} /> 
           <PrivateRoute exact path="/person/:id" component={UserPage}/>
           <PrivateRoute path="/person/:id/log" component={UserLog}/>
-          <PublicOnlyRoute path="/register_user" component={RegisterUser} />
+          {/* <PublicOnlyRoute path="/register_user" component={RegisterUser} /> */}
+          <PublicOnlyRoute path="/register_user" component={RegisterUserHooks} />
           <PrivateRoute exact path="/license" component={LicenseListHooks} />
           {/* <PrivateRoute exact path="/license" component={LicenseList} /> */}
           {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
