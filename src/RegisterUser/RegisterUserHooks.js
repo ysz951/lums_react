@@ -7,15 +7,17 @@ function RegisterUserHooks() {
         userRole: "",
         userEmail: "",
         userPassword: "",
-        userName: "",
-        err: null
+        userName: ""
     })
+    const [nameErr, setNameErr] = useState("");
+    const [passwordErr, setPasswordErr] = useState("");
     const register = (e) => {
         e.preventDefault();
         setState({
-            ...state,
-            err: null
+            ...state
         });
+        setNameErr("");
+        setPasswordErr("");
         const member = {
             name: state.userName,
             username: state.userName,
@@ -31,11 +33,12 @@ function RegisterUserHooks() {
             .catch(err => {
                 const error = err.response.data;
                 console.log(err.response.data);
-                if (error.errors && error.errors.length > 0) {
-                    alert(error.errors[0].defaultMessage)
+                if (error.fieldErrors) {
+                    setNameErr(error.fieldErrors.name);
+                    setPasswordErr(error.fieldErrors.password)
                 }
                 else {
-                    alert(error.message)
+                    alert(error.message);
                 }
             })
     }
@@ -60,6 +63,7 @@ function RegisterUserHooks() {
                         <input placeholder="Name" type="text" name="userName" className="form-control"
                             value={state.userName} onChange={handleChange} required/>
                         {/* <p className="text-danger" >{this.state.err.name}</p> */}
+                        {nameErr && nameErr.length && <p className="alert alert-danger">{nameErr}</p>}
                     </div>
                     <div className="form-group">
                         <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Role</label>
@@ -82,6 +86,7 @@ function RegisterUserHooks() {
                         <label> Password: </label>
                         <input placeholder="Password" type="password" name="userPassword" className="form-control"
                             onChange={handleChange} required/>
+                        {passwordErr && passwordErr.length && <p className="alert alert-danger">{passwordErr}</p>}
                     </div>
                     
                     <div className="form-group">
