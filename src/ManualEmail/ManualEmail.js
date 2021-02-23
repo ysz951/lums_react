@@ -12,6 +12,7 @@ class ManualEmail extends Component {
         example: "This is filler text for the email to be sent",
         emailSent: false,
         id: "",
+        content: ""
     }
     onSubmit = this.onSubmit.bind(this);
 
@@ -61,14 +62,15 @@ class ManualEmail extends Component {
     }
 
     onSubmit(){
+        console.log(this.state.email);
         emailjs.send(
-            "service_2jquq8t","template_nkvhs0k",{
+            "service_m0qmore","template_odtpjhh",{
             subject: this.state.subject,
             to_name: this.state.username,
             from_name: "LUMS",
             message: this.state.message,
             to_email: this.state.email,
-            },"user_yxw8VN80pBKH8zXkSiOad").then(function(response) {
+            },"user_B9wDWtHFPtLDFGfD6kNFo").then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
              }, function(error) {
                 console.log('FAILED...', error);
@@ -83,28 +85,21 @@ class ManualEmail extends Component {
                 {!this.state.emailSent &&
                 <div>
                 <h1>Send Email To: {this.state.email}</h1>
-                <table className="table table-dark">
-                    <tr><label>Subject: </label>
+                <label>Subject: </label>
                     <select className="custom-select mr-1" id="sub" name="sub" onChange={this.handleChange}>
                         <option value="default">Select a Subject</option>
                         <option value="CW">Content Warning</option>
                         <option value="NLPC">New License Prices Coming</option>
                         <option value="IW">Inactivity Warning</option>
                     </select>
-                    </tr>
-                    <tr>
-                        <label>Example Email: </label>
-                    </tr>
-                    <tr>
-                        <textarea className="w-100 h-100" value={this.state.example}/>
-                    </tr>
-                    <tr>
-                        <Link to={`/person/${this.state.id}`}>
+                    <br />
+                    <label>Example Email: </label>
+                    <textarea className="w-100 h-100" value={this.state.example} onChange={e => {this.setState({content: e.target.value})}}/>
+                    <Link to={`/person/${this.state.id}`}>
                             <button type="cancel" className="btn btn-danger">Cancel</button>
                         </Link>
                         <button type="submit" className="btn btn-primary ml-2" onClick={this.onSubmit}>Submit</button>           
-                    </tr>
-                </table>
+                    
                 </div>
                 }{this.state.emailSent &&
                     <div>
