@@ -21,6 +21,7 @@ function LoginHooks() {
     const handleLoginSuccess = () => {
         const destination = (location.state || {}).from || '/person';
         history.push(destination);
+        window.location.reload(true);
     };
 
     const login = (e) => {

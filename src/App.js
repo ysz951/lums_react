@@ -92,11 +92,7 @@ class App extends Component {
     this.forceUpdate();
     // this.props.history.push('/');
   }
-
-  getnewToken = () => {
-    AuthApiService.postRefreshToken();
-  }
-
+  
   render() {
     if (TokenService.hasAuthToken()) {
       console.log(TokenService._getMsUntilExpiry(
@@ -105,7 +101,6 @@ class App extends Component {
     }
     return (
       <>
-      <button onClick={this.getnewToken}>Click</button>
         <Switch>
           {/* <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={Header}/> */}
           <Route path={["/person", "/license", "/sale", "/log", "/adminResetPW"]} component={HeaderHooks} />
