@@ -1,6 +1,7 @@
 import axios from 'axios';
 import config from '../config';
-import TokenService from "../services/token-service"
+import TokenService from "../services/token-service";
+
 const  { LUMS_API_URL } = config;
 const option = {
     headers: {
@@ -65,7 +66,8 @@ class MemberRESTService {
     }
 
     memberLogin(member) {
-        return axios.post(LUMS_API_URL + '/auth/signin', member);
+        return axios.post(LUMS_API_URL + '/auth/signin', member)
+                    .then();
     }
 
 }
