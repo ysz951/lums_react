@@ -17,7 +17,7 @@ const AuthApiService = {
               - we don't need to queue the idle timers again as the user is already logged in.
               - we'll catch the error here as this refresh is happening behind the scenes
             */
-            console.log("get refresh");
+            
             TokenService.saveAuthToken(res.data.accessToken);
             // AuthApiService.postRefreshToken();
             TokenService.queueCallbackBeforeExpiry(() => {
@@ -29,7 +29,7 @@ const AuthApiService = {
             TokenService.clearAuthToken();
             localStorage.removeItem('role');
             console.log('refresh token request error');
-            // window.location.reload(true);
+            window.location.reload(true);
             console.error(err);
           })
       },

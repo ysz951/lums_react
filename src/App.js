@@ -44,7 +44,6 @@ class App extends Component {
 
     /* if a user is logged in */
     if (TokenService.hasAuthToken()) {
-      console.log("log in")
       // this.forceUpdate()
       /*
         tell the idle service to register event listeners

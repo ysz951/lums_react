@@ -35,7 +35,6 @@ const TokenService = {
     const msUntilExpiry = TokenService._getMsUntilExpiry(
       TokenService.readJwtToken()
     );
-    console.log("queue call back")
     /*
       queue a callback that will happen 10 seconds before the token expires
       the callback is passed in as an argument so could be anything,

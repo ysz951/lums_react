@@ -34,13 +34,13 @@ function LoginHooks() {
             .then(res => {
                 console.log(res.data);
                 TokenService.saveAuthToken(res.data.accessToken);
+                setRole(res.data.role);
                 IdleService.regiserIdleTimerResets();
                 TokenService.queueCallbackBeforeExpiry(() => {
                     AuthApiService.postRefreshToken();
                 })
                 // setTimeout(AuthApiService.postRefreshToken(), 2000)
                 // AuthApiService.postRefreshToken();
-                setRole(res.data.role);
                 return res;
             })
             .then(res => {

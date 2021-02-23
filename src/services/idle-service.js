@@ -17,7 +17,7 @@ const IdleService = {
   },
   /* called when a user interacts with the page */
   resetIdleTimer(ev) {
-    console.info('event:', ev.type)
+    // console.info('event:', ev.type)
     /* remove any timeouts as the user just interacted */
     clearTimeout(_timeoutId);
     // console.log('log out')
