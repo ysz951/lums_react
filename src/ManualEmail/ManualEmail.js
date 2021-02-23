@@ -61,14 +61,15 @@ class ManualEmail extends Component {
     }
 
     onSubmit(){
+        console.log(this.state.email);
         emailjs.send(
-            "service_2jquq8t","template_nkvhs0k",{
+            "service_m0qmore","template_odtpjhh",{
             subject: this.state.subject,
             to_name: this.state.username,
             from_name: "LUMS",
             message: this.state.message,
             to_email: this.state.email,
-            },"user_yxw8VN80pBKH8zXkSiOad").then(function(response) {
+            },"user_B9wDWtHFPtLDFGfD6kNFo").then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
              }, function(error) {
                 console.log('FAILED...', error);
