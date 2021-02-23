@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import { Link } from 'react-router-dom';
+import Context from '../Context/Context';
 function ResetPasswordHooks() {
+    const {role} = useContext(Context);
     const [userName, setUserName] = useState("");
     const [oldPassword, setOldPassword] = useState("");
     const [newPassword, setNewPassword] = useState("");
@@ -33,7 +35,7 @@ function ResetPasswordHooks() {
     }
     return (
         <div>
-            {!passwordSet ?
+            {role === 'ROLE_SUPERUSER' ? !passwordSet ?
                 <div>
                     <h1>Reset Password</h1>
                     {err && <p className="text-danger">{err}</p>}
@@ -65,6 +67,8 @@ function ResetPasswordHooks() {
                         <Link className="badge badge-secondary" to={'/adminResetPW'}>Return</Link>
                     </div>
                 </div>
+                :
+                <h1>Only the super admin can change passwords of other admin</h1>
             }
 
         </div>

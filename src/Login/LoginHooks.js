@@ -1,7 +1,9 @@
 import {useState, useContext} from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import TokenService from '../services/token-service';
+import IdleService from '../services/idle-service';
 import { useHistory, useLocation } from 'react-router-dom';
+import AuthApiService from '../services/auth-api-service';
 import Context from '../Context/Context';
 import { Link } from 'react-router-dom';
 function LoginHooks() {
@@ -19,6 +21,7 @@ function LoginHooks() {
     const handleLoginSuccess = () => {
         const destination = (location.state || {}).from || '/person';
         history.push(destination);
+        window.location.reload(true);
     };
 
     const login = (e) => {
@@ -30,12 +33,19 @@ function LoginHooks() {
         }
         MemberRESTService.memberLogin(member)
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data);
                 TokenService.saveAuthToken(res.data.accessToken);
                 setRole(res.data.role);
+                IdleService.regiserIdleTimerResets();
+                TokenService.queueCallbackBeforeExpiry(() => {
+                    AuthApiService.postRefreshToken();
+                })
+                // setTimeout(AuthApiService.postRefreshToken(), 2000)
+                // AuthApiService.postRefreshToken();
                 return res;
             })
             .then(res => {
+                // AuthApiService.postRefreshToken();
                 handleLoginSuccess();
             })
             .catch(err => {

@@ -3,10 +3,16 @@ import TokenService from '../services/token-service';
 import { Link, NavLink } from 'react-router-dom';
 import { useHistory, useParams } from 'react-router-dom';
 import Context from '../Context/Context';
+import IdleService from '../services/idle-service';
 function HeaderHooks() {
-    const {logout} = useContext(Context);
+    const { logout } = useContext(Context);
+    // console.log(TokenService._getMsUntilExpiry(
+    //     TokenService.readJwtToken()
+    // ));
     const handleLogoutClick = () => {
         TokenService.clearAuthToken();
+        TokenService.clearCallbackBeforeExpiry();
+        IdleService.unRegisterIdleResets();
         logout();
     }
     return (
