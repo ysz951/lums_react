@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import { withRouter, Link } from 'react-router-dom';
+import config from '../config';
 import * as emailjs from 'emailjs-com';
-
+const { EMAIL_SERVICE_ID, EMAIL_USER_ID, EMAIL_TEMPLATE_ID } = config;
 class ManualEmail extends Component {
     state = {
         username: "",
@@ -18,6 +19,7 @@ class ManualEmail extends Component {
 
     componentDidMount() {
         const { id } = this.props.match.params;
+        // console.log(EMAIL_SERVICE_ID)
         MemberRESTService.lookupMemberById(id)
             .then(res => {
                 const user = res.data;
@@ -62,15 +64,15 @@ class ManualEmail extends Component {
     }
 
     onSubmit(){
-        console.log(this.state.email);
+        // console.log(this.state.email);
         emailjs.send(
-            "service_m0qmore","template_odtpjhh",{
+            EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID,{
             subject: this.state.subject,
             to_name: this.state.username,
             from_name: "LUMS",
             message: this.state.message,
             to_email: this.state.email,
-            },"user_B9wDWtHFPtLDFGfD6kNFo").then(function(response) {
+            }, EMAIL_USER_ID).then(function(response) {
                 console.log('SUCCESS!', response.status, response.text);
              }, function(error) {
                 console.log('FAILED...', error);
