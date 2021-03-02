@@ -94,11 +94,11 @@ class App extends Component {
   }
   
   render() {
-    if (TokenService.hasAuthToken()) {
-      console.log(TokenService._getMsUntilExpiry(
-        TokenService.readJwtToken()
-      ));
-    }
+    // if (TokenService.hasAuthToken()) {
+    //   console.log(TokenService._getMsUntilExpiry(
+    //     TokenService.readJwtToken()
+    //   ));
+    // }
     return (
       <>
         <Switch>
