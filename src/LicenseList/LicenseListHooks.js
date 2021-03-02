@@ -7,7 +7,9 @@ function LicenseListHooks(props) {
     const [price, setPrice] = useState(0);
     const [duration, setDuration] = useState("");
     const [filter_duration, setFilter_duration] = useState("All");
+    const [role, setRole] = useState("");
     useEffect(() => {
+        setRole(localStorage.getItem("role"));
         LicenseRESTService.listAllLicense()
             .then(res => {
                 setLicenses(res.data);
@@ -95,35 +97,37 @@ function LicenseListHooks(props) {
 
     return (
         <>
-            <form onSubmit={register} className="container">
-                <div className="form-col align-items-center justify-content-center">
-                    <div className="form-group">
-                        <label> Date of License: </label>
-                        <input placeholder="Date (YYYY-MM-DD)" name="dol" type="date"
-                            className="form-control" required
-                            value={dol} onChange={e => setDol(e.target.value)} />
+            {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') && 
+                <form onSubmit={register} className="container">
+                    <div className="form-col align-items-center justify-content-center">
+                        <div className="form-group">
+                            <label> Date of License: </label>
+                            <input placeholder="Date (YYYY-MM-DD)" name="dol" type="date"
+                                className="form-control" required
+                                value={dol} onChange={e => setDol(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Duration</label>
+                            <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="duration"
+                                value={duration} onChange={e => setDuration(e.target.value)} required>
+                                <option value="">Choose...</option>
+                                <option value="YEARLY">Yearly</option>
+                                <option value="MONTHLY">Monthly</option>
+                                <option value="PERVISIT">Pervisit</option>
+                            </select>
+                        </div>
+                        <div className="form-group">
+                            <label> Price: </label>
+                            <input placeholder="0.00" name="price" type="number"
+                                className="form-control" step="0.01" min="0"
+                                value={price} onChange={e => setPrice(e.target.value)} />
+                        </div>
+                        <div className="form-group">
+                            <button type="submit" className="btn btn-primary">Submit</button>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label className="mr-sm-2" htmlFor="inlineFormCustomSelect">Duration</label>
-                        <select className="custom-select mr-sm-2" id="inlineFormCustomSelect" name="duration"
-                            value={duration} onChange={e => setDuration(e.target.value)} required>
-                            <option value="">Choose...</option>
-                            <option value="YEARLY">Yearly</option>
-                            <option value="MONTHLY">Monthly</option>
-                            <option value="PERVISIT">Pervisit</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label> Price: </label>
-                        <input placeholder="0.00" name="price" type="number"
-                            className="form-control" step="0.01" min="0"
-                            value={price} onChange={e => setPrice(e.target.value)} />
-                    </div>
-                    <div className="form-group">
-                        <button type="submit" className="btn btn-primary">Submit</button>
-                    </div>
-                </div>
-            </form>
+                </form>
+            }
             <form onSubmit={filter} className="container">
                 <div className="form-col align-items-center justify-content-center">
                     <div className="form-group">
