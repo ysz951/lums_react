@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import { withRouter, Link } from 'react-router-dom';
+import Context from '../Context/Context';
 import config from '../config';
 import * as emailjs from 'emailjs-com';
 const { EMAIL_SERVICE_ID, EMAIL_USER_ID, EMAIL_TEMPLATE_ID } = config;
@@ -15,6 +16,7 @@ class ManualEmail extends Component {
         id: "",
         content: ""
     }
+    static contextType = Context;
     onSubmit = this.onSubmit.bind(this);
 
     componentDidMount() {
@@ -82,6 +84,7 @@ class ManualEmail extends Component {
     }
 
     render(){
+        console.log(this.context.role);
         return(
             <div>
                 {!this.state.emailSent &&

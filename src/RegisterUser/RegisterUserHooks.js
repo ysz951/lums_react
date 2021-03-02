@@ -72,7 +72,7 @@ function RegisterUserHooks() {
                             <option value="">Choose...</option>
                             <option value="ROLE_USER">User</option>
                             <option value="ROLE_ADMIN">Admin</option>
-                            <option value="ROLE_SUPERUSER">Superuser</option>
+                            {/* <option value="ROLE_SUPERUSER">Superuser</option> */}
                             <option value="ROLE_EXPERT">Expert</option>
                         </select>
                     </div>
