@@ -12,6 +12,7 @@ class UserPage extends Component {
         email: ""
     }
     componentDidMount() {
+        
         const { id } = this.props.match.params;
         MemberRESTService.lookupMemberById(id)
             .then(res => {
@@ -98,7 +99,8 @@ class UserPage extends Component {
 
     render() {
         const { id } = this.props.match.params;
-
+        const role = localStorage.getItem('role');
+        if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
         return (
             <>
                 
