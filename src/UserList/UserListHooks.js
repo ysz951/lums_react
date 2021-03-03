@@ -6,7 +6,9 @@ function UserListHooks() {
     const [searchName, setSearchName] = useState("");
     const [users, setUsers] = useState([]);
     const [orgUsers, setOrgUsers] = useState([]);
+    const [role, setRole] = useState("");
     useEffect(() => {
+        setRole(localStorage.getItem("role"));
         MemberRESTService.listAllMembers()
             .then(res => {
                 setUsers(res.data);
@@ -25,7 +27,8 @@ function UserListHooks() {
                 <td>{item.role}</td>
                 <td>{item.blocked.toString()}</td>
                 <td>{item.email}</td>
-                <td><Link className="badge badge-secondary" to={`/person/${item.id}`}>View</Link></td>
+                {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') && 
+                <td><Link className="badge badge-secondary" to={`/person/${item.id}`}>View</Link></td>}
             </tr>
         )
     };
@@ -48,7 +51,7 @@ function UserListHooks() {
     const sortByName = () => {
         setUsers([...users].sort((a, b) => a.name > b.name ? 1 : a.name === b.name ? 0 : -1));
     }
-
+    
     return (
         <>
             <form onSubmit={searchUser}>
@@ -67,7 +70,7 @@ function UserListHooks() {
                         <th scope="col">Role</th>
                         <th scope="col">Blocked</th>
                         <th scope="col"><button type="button" onClick={sortByEmail} className="cursor">Email</button></th>
-                        <th scope="col">Detail</th>
+                        {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') && <th scope="col">Detail</th>}
                     </tr>
                 </thead>
                 <tbody>
