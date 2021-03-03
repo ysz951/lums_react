@@ -34,6 +34,7 @@ import UserLogHooks from './UserLog/UserLogHooks';
 import TokenService from './services/token-service';
 import IdleService from './services/idle-service';
 import AuthApiService from './services/auth-api-service';
+import AdminAndSuperRoute from './Route/AdminAndSuperRoute';
 class App extends Component {
   componentDidMount() {
     /*
@@ -121,7 +122,8 @@ class App extends Component {
           <PrivateRoute exact path="/license" component={LicenseListHooks} />
           {/* <PrivateRoute exact path="/license" component={LicenseList} /> */}
           {/* <PrivateRoute exact path="/license/:id" component={LicensePage} /> */}
-          <PrivateRoute exact path="/license/:id" component={LicensePageHooks} />
+          {/* <PrivateRoute exact path="/license/:id" component={LicensePageHooks} /> */}
+          <AdminAndSuperRoute exact path="/license/:id" component={LicensePageHooks} />
           {/* <LicensePageHooks></LicensePageHooks> */}
           {/* <PrivateRoute exact path="/sale" component={SaleList} /> */}
           <PrivateRoute exact path="/sale" component={SaleListHooks} />

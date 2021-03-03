@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import SaleRESTService from '../RESTService/SaleRESTService';
 import { withRouter, Link } from 'react-router-dom';
-
+import TokenService from '../services/token-service';
 class UserPage extends Component {
     state = {
         role: "",
@@ -99,6 +99,7 @@ class UserPage extends Component {
 
     render() {
         const { id } = this.props.match.params;
+        console.log(TokenService.readJwtToken());
         const role = localStorage.getItem('role');
         if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
         return (
@@ -132,11 +133,16 @@ class UserPage extends Component {
                                 </select>
                             </td>
                             <td>
-                                <select className="custom-select mr-1" id="roleSelect" name="role" value={this.state.role}
+                                {role === 'ROLE_SUPERUSER' ? <select className="custom-select mr-1" id="roleSelect" name="role" value={this.state.role}
                                     onChange={this.handleChange} required>
                                     <option value="ROLE_USER">User</option>
                                     <option value="ROLE_ADMIN">Admin</option>
                                 </select>
+                                :  
+                                <p>{this.state.role}</p>  
+                            }
+                                
+                                
                             </td>
                             <td>
                                 <input placeholder="" type="email" name="email" className="form-control"
