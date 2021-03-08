@@ -7,7 +7,7 @@ function SaleListHooks() {
     //     sales: [],
     //     orgSales: [],
     //     filter_sale: "All"
-    const [searchName, setSearchName] = useState("");
+    const role = localStorage.getItem('role');
     const [sales, setSales] = useState([]);
     const [orgSales, setOrgSales] = useState([]);
     const [filter_sale, setFilter_sale] = useState("All");
@@ -30,7 +30,7 @@ function SaleListHooks() {
                 <td>{item.active.toString()}</td>
                 <td>{item.purchasedDate}</td>
                 <td>{item.expireDate}</td>
-                <td><Link className="badge badge-secondary" to={`/sale/${item.id}`}>View</Link></td>
+                {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <td><Link className="badge badge-secondary" to={`/sale/${item.id}`}>View</Link></td>}
             </tr>
         )
     }
@@ -97,7 +97,7 @@ function SaleListHooks() {
                             className="cursor">Purchased Date</button></th>
                         <th scope="col"><button type="button" onClick={sortByExpirationDate} 
                             className="cursor">Expired Date</button></th>
-                        <th scope="col">View</th>
+                        {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <th scope="col">View</th>}
                     </tr>
                 </thead>
                 <tbody>
