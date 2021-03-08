@@ -24,7 +24,8 @@ function LicenseListHooks(props) {
 
             })
             .catch(err => {
-
+                alert(err.response.data.message)
+                console.log(err.response.data)
             })
     }
     const register = (e) => {
@@ -41,10 +42,9 @@ function LicenseListHooks(props) {
                 setLicenses(res.data);
             })
             .catch(err => {
-                console.log(err.response.data.price)
+                console.log(err.response.data)
+                
             })
-            .catch(err => {})
-            
     }
 
     const renderLicenses = () => {

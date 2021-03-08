@@ -15,7 +15,10 @@ function HeaderHooks() {
         IdleService.unRegisterIdleResets();
         logout();
     }
+    const role = localStorage.getItem('role');
     return (
+        <>
+        <p className="bg-light mb-0" >{role}</p>
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
@@ -41,6 +44,7 @@ function HeaderHooks() {
                 {TokenService.hasAuthToken() && <Link onClick={handleLogoutClick} to="/">Log out</Link>}
             </div>
         </nav>
+        </>
     )
 }
 
