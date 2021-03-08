@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
 import SaleRESTService from '../RESTService/SaleRESTService';
 import { withRouter, Link } from 'react-router-dom';
@@ -12,7 +12,7 @@ class UserPage extends Component {
         email: ""
     }
     componentDidMount() {
-        
+
         const { id } = this.props.match.params;
         MemberRESTService.lookupMemberById(id)
             .then(res => {
@@ -43,22 +43,32 @@ class UserPage extends Component {
 
     changeUser = (e) => {
         e.preventDefault();
-        let wrong_check = false;
         if (this.state.role !== this.state.orgRole) {
             this.changeRole().then(res => {
-                this.setState({orgRole: this.state.role})
-            }).catch(err => {wrong_check = true})
+                this.setState({ orgRole: this.state.role })
+            }).catch(err => {
+                console.log(err.response.data); 
+                const error = err.response.data;
+                alert(error.message);
+            })
         }
         if (this.state.email.toLowerCase() !== this.state.orgEmail.toLowerCase()) {
             this.changeEmail().then(res => {
-                this.setState({orgEmail: this.state.email})
-            }).catch(err => {console.log(err.response.data); 
-                wrong_check = true})
+                this.setState({ orgEmail: this.state.email })
+            }).catch(err => {
+                console.log(err.response.data);
+                const error = err.response.data;
+                alert(error.message);
+            })
         }
         if (this.state.blocked !== this.state.orgBlocked) {
             this.changeBlock().then(res => {
-                this.setState({orgBlocked: this.state.blocked})
-            }).catch(err => {wrong_check = true})
+                this.setState({ orgBlocked: this.state.blocked })
+            }).catch(err => {
+                console.log(err.response.data);
+                const error = err.response.data;
+                alert(error.message);
+             })
         }
     }
 
@@ -96,71 +106,102 @@ class UserPage extends Component {
             </tr>
         )
     }
+    userFormTitle = () => {
+        return this.state.role !== 'ROLE_SUPERUSER' ?
+            <tr>
+                <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Blocked</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Log</th>
+                <th scope="col">Email</th>
+            </tr> :
+            <tr>
+            <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Blocked</th>
+                <th scope="col">Role</th>
+            <th scope="col">Email</th>
+        </tr> 
+    }
 
     render() {
         const { id } = this.props.match.params;
         console.log(TokenService.readJwtToken());
         const role = localStorage.getItem('role');
-        if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
+        // if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
         return (
             <>
-                
+
                 <h1>User Id: {id}</h1>
                 <form onSubmit={this.changeUser}>
-                <table className="table table-dark">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Name</th>
-                            <th scope="col">Blocked</th>
-                            <th scope="col">Role</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Log</th>
-                            <th scope="col">Email</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr >
-                            <th scope="row">{id}</th>
-                            <td>
-                                {this.state.userName}
-                            </td>
-                            <td>
-                                <select className="custom-select mr-1" id="activateSelect" name="blocked" value={this.state.blocked}
-                                    onChange={this.handleChange} required>
-                                    <option value={"false"}>False</option>
-                                    <option value={"true"}>True</option>
-                                </select>
-                            </td>
-                            <td>
-                                {role === 'ROLE_SUPERUSER' ? <select className="custom-select mr-1" id="roleSelect" name="role" value={this.state.role}
-                                    onChange={this.handleChange} required>
-                                    <option value="ROLE_USER">User</option>
-                                    <option value="ROLE_ADMIN">Admin</option>
-                                </select>
-                                :  
-                                <p>{this.state.role}</p>  
+                    <table className="table table-dark">
+                        <thead>
+                            {this.userFormTitle()}
+                        </thead>
+                        <tbody>
+                            <tr >
+                                <th scope="row">{id}</th>
+                                <td>
+                                    {this.state.userName}
+                                </td>
+                                <td>
+                                    {this.state.role !== 'ROLE_SUPERUSER' && this.state.role != 'ROLE_ADMIN'?
+                                        <select className="custom-select mr-1" id="activateSelect" name="blocked" value={this.state.blocked}
+                                            onChange={this.handleChange} required>
+                                            <option value={"false"}>False</option>
+                                            <option value={"true"}>True</option>
+                                        </select>
+                                        :
+                                        <p>{this.state.blocked}</p>
+                                    }
+
+                                </td>
+                                <td>
+                                    {this.state.role !== 'ROLE_SUPERUSER' ?
+                                        <select className="custom-select mr-1" id="roleSelect" name="role" value={this.state.role}
+                                            onChange={this.handleChange} required>
+                                            <option value="ROLE_USER">User</option>
+                                            <option value="ROLE_EXPERT">Expert</option>
+                                            <option value="ROLE_ADMIN">Admin</option>
+                                        </select>
+                                        :
+                                        <p>{this.state.role}</p>
+                                    }
+
+                                </td>
+                                <td>
+                                    {this.state.role !== 'ROLE_SUPERUSER' ?
+                                        <input placeholder="" type="email" name="email" className="form-control"
+                                            value={this.state.email} onChange={this.handleChange} required />
+                                        :
+                                        <p>{this.state.email}</p>
+                                    }
+
+                                </td>
+                                {this.state.role !== 'ROLE_SUPERUSER' ? 
+                                <>
+                                <td>
+                                    <Link className="badge badge-secondary" to={`/person/${id}/log`}>View</Link>
+                                </td>
+                                <td>
+                                    <Link className="badge badge-secondary" to={`/person/${id}/email`}>Email</Link>
+                                </td>
+                                </> :
+                                <Fragment></Fragment>
                             }
-                                
-                                
-                            </td>
-                            <td>
-                                <input placeholder="" type="email" name="email" className="form-control"
-                                    value={this.state.email} onChange={this.handleChange} required/>
-                            </td>
-                            <td>
-                                <Link className="badge badge-secondary" to={`/person/${id}/log`}>View</Link>
-                            </td>
-                            <td>
-                                <Link className="badge badge-secondary" to={`/person/${id}/email`}>Email</Link>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div className="d-flex">
-                    <button onClick={this.goBack} type="button" className="btn btn-outline-info">Back </button>
-                    <button className="btn btn-primary ml-2" type="submit">Save</button>
-                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div className="d-flex">
+                        <button onClick={this.goBack} type="button" className="btn btn-outline-info">Back </button>
+                        {this.state.role !== 'ROLE_SUPERUSER' ?
+                            <button className="btn btn-primary ml-2" type="submit">Save</button>
+                            :
+                            ""
+                        }
+                    </div>
                 </form>
                 <h2>Sale</h2>
                 <table className="table table-dark">
@@ -176,7 +217,7 @@ class UserPage extends Component {
                         {this.renderSales()}
                     </tbody>
                 </table>
-                
+
             </>
         )
     }
