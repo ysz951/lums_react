@@ -55,7 +55,7 @@ function LicenseListHooks(props) {
                 <td>{item.active.toString()}</td>
                 <td>{item.price}</td>
                 <td>{item.duration}</td>
-                <td><Link className="badge badge-secondary" to={`/license/${item.id}`}>View</Link></td>
+                {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') && <td><Link className="badge badge-secondary" to={`/license/${item.id}`}>View</Link></td>}
                 <td><button onClick={() => purchase(item.id)} className="btn btn-primary">Done</button></td>
             </tr>
         )
@@ -153,7 +153,7 @@ function LicenseListHooks(props) {
                         <th scope="col">Active</th>
                         <th scope="col"><button type="button" onClick={sortByPrice} className="cursor">Price</button></th>
                         <th scope="col">Duration</th>
-                        <th scope="col">Detail</th>
+                        {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') && <th scope="col">Detail</th>}
                         <th scope="col">Purchase</th>
                     </tr>
                 </thead>

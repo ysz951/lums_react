@@ -30,7 +30,7 @@ function SaleListHooks() {
                 <td>{item.active.toString()}</td>
                 <td>{item.purchasedDate}</td>
                 <td>{item.expireDate}</td>
-                {role in ['Role_SUPERUSER' , 'Role_ADMIN'] && <td><Link className="badge badge-secondary" to={`/sale/${item.id}`}>View</Link></td>}
+                {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <td><Link className="badge badge-secondary" to={`/sale/${item.id}`}>View</Link></td>}
             </tr>
         )
     }
@@ -97,7 +97,7 @@ function SaleListHooks() {
                             className="cursor">Purchased Date</button></th>
                         <th scope="col"><button type="button" onClick={sortByExpirationDate} 
                             className="cursor">Expired Date</button></th>
-                        {role in ['Role_SUPERUSER' , 'Role_ADMIN'] && <th scope="col">View</th>}
+                        {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <th scope="col">View</th>}
                     </tr>
                 </thead>
                 <tbody>
