@@ -129,7 +129,8 @@ class App extends Component {
           {/* <PrivateRoute exact path="/sale" component={SaleList} /> */}
           <PrivateRoute exact path="/sale" component={SaleListHooks} />
           {/* <PrivateRoute exact path="/sale/:id" component={SalePage} /> */}
-          <PrivateRoute exact path="/sale/:id" component={SalePageHooks} />
+          {/* <PrivateRoute exact path="/sale/:id" component={SalePageHooks} /> */}
+          <AdminAndSuperRoute exact path="/sale/:id" component={SalePageHooks} />
           {/* <PrivateRoute exact path="/log" component={LogList} /> */}
           <PrivateRoute exact path="/log" component={LogListHooks} />
           <PrivateRoute path="/person/:id/email" component={ManualEmail} />
