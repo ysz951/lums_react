@@ -130,7 +130,7 @@ class UserPage extends Component {
         const { id } = this.props.match.params;
         console.log(TokenService.readJwtToken());
         const role = localStorage.getItem('role');
-        if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
+        // if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
         return (
             <>
 
@@ -147,7 +147,7 @@ class UserPage extends Component {
                                     {this.state.userName}
                                 </td>
                                 <td>
-                                    {this.state.role !== 'ROLE_SUPERUSER' ?
+                                    {this.state.role !== 'ROLE_SUPERUSER' && this.state.role != 'ROLE_ADMIN'?
                                         <select className="custom-select mr-1" id="activateSelect" name="blocked" value={this.state.blocked}
                                             onChange={this.handleChange} required>
                                             <option value={"false"}>False</option>
