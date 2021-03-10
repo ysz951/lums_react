@@ -34,7 +34,7 @@ This is the front end for `LUMS`. The front end can be found at https://github.c
   - `GRANT ALL PRIVILEGES ON DATABASE "lums-test" TO testuser`
 - Create `applictaion.yml` under `/src/main/resources` folder
   - `applictaion.yml` should include: 
-    ```
+    ```yml
       jwtSecret:
         YourSecret
     ```
@@ -44,3 +44,7 @@ This is the front end for `LUMS`. The front end can be found at https://github.c
 - Run tests: `mvn clean test`
 - Start application: `mvn spring-boot:run`
 - Package application: `mvn package`
+
+## API Endpotins
+### POST `/api/auth/signin`
+### POST `/api/auth/signup`
