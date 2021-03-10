@@ -6,6 +6,7 @@ import { useHistory, useLocation } from 'react-router-dom';
 import AuthApiService from '../services/auth-api-service';
 import Context from '../Context/Context';
 import { Link } from 'react-router-dom';
+import config from '../config';
 function LoginHooks() {
     const {setRole} = useContext(Context);
     const [password, setPassword] = useState("");
@@ -13,11 +14,7 @@ function LoginHooks() {
     const [err, setErr] = useState(null);
     const history = useHistory();
     const location = useLocation();
-    // state = {
-    //     password: "",
-    //     email: "",
-    //     err: null
-    // }
+
     const handleLoginSuccess = () => {
         const destination = (location.state || {}).from || '/person';
         history.push(destination);
@@ -31,10 +28,24 @@ function LoginHooks() {
             usernameOrEmail: email,
             password: password
         }
+        loginAction(member);
+    }
+    
+    const demo_login = e => {
+        setErr(null);
+        const member = {
+            usernameOrEmail: "lums@admin.com",
+            password: config.DEMO_PASSWORD
+        }
+        loginAction(member);
+    }
+
+    const loginAction = member => {
         MemberRESTService.memberLogin(member)
             .then(res => {
-                // console.log(res.data);
+                console.log(res.data.role);
                 TokenService.saveAuthToken(res.data.accessToken);
+                // localStorage.setItem('role', res.data.role);
                 setRole(res.data.role);
                 IdleService.regiserIdleTimerResets();
                 TokenService.queueCallbackBeforeExpiry(() => {
@@ -73,8 +84,9 @@ function LoginHooks() {
                 </div>
                 {err && <p className="text-danger" >{err}</p>}
                 <div className="d-flex">
-                    <button onClick={goBack} type="button" className="btn btn-outline-info">Back</button>
+                    <button type="button" onClick={demo_login} className="btn btn-primary">Demo Login</button>
                     <button type="submit" className="btn btn-primary ml-2">Login</button>
+                    <button onClick={goBack} type="button" className="btn btn-outline-info ml-2">Back</button>
                 </div>      
                 <p>Don't have an acount yet? <Link to="/register_user">Sign up</Link></p>
             </form>

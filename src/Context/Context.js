@@ -1,21 +1,14 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { createContext } from 'react';
 
 const Context = createContext();
 
 
 export default Context;
 export const ContextProvider = props => {
-    const [role, setRole] = useState("");
-    useEffect(() => {
-        if (localStorage.getItem('role')) {
-            setRole(localStorage.getItem('role'));
-        }
-    }, []);
-    useEffect(() => {
-        if (role.length) {
-            localStorage.setItem('role', role);
-        }
-    }, [role]);
+    const setRole = role => {
+        localStorage.setItem('role', role);
+    }
+    const role = localStorage.getItem('role');
     const logout = () => {
         localStorage.removeItem('role');
     }
