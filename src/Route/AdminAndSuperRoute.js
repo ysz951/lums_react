@@ -18,7 +18,7 @@ export default function AdminAndSuperRoute({ component, ...props }) {
         :
           <Redirect
             to={{
-              pathname: '/person',
+              pathname: '/license',
               state: { from: componentProps.location }
             }}
           />

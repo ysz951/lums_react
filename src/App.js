@@ -113,7 +113,7 @@ class App extends Component {
           {/* <PublicOnlyRoute exact path="/login" component={Login} /> */}
           <PublicOnlyRoute exact path="/login" component={LoginHooks} />
           {/* <PrivateRoute exact path="/person" component={UserList} /> */}
-          <PrivateRoute exact path="/person" component={UserListHooks} />
+          <AdminAndSuperRoute exact path="/person" component={UserListHooks} />
           {/* <PrivateRoute exact path="/person/:id" component={UserPage} /> */}
           <AdminAndSuperRoute exact path="/person/:id" component={UserPage} />
           {/* <PrivateRoute path="/person/:id/log" component={UserLog}/> */}
