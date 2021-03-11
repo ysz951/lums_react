@@ -27,24 +27,19 @@ This is the front end for `LUMS`. The front end can be found at https://github.c
 
 ## Setting Up
 
-- Create development and test databases: `createdb lums`, `createdb lums-test`
-- Create database user: `createuser testuser`
-- Grant privileges to new user in `psql`:
-  - `GRANT ALL PRIVILEGES ON DATABASE "lums" TO testuser`
-  - `GRANT ALL PRIVILEGES ON DATABASE "lums-test" TO testuser`
-- Create `applictaion.yml` under `/src/main/resources` folder
-  - `applictaion.yml` should include: 
-    ```yml
-      jwtSecret:
-        YourSecret
-    ```
+- Install dependencies: `npm install`
+- create a `.env` file under the root folder and include the parameters:
+```
+REACT_APP_EMAIL_SERVICE_ID=You_EmailJS_ServiceID
+REACT_APP_EMAIL_USER_ID=You_EmailJS_UserID
+REACT_APP_EMAIL_TEMPLATE_ID=You_EmailJS_TemplateID
+REACT_APP_API_URL=YourAPIUrl
+REACT_APP_DEMO_PASSWORD=YourPassword
+```
+
 ## Scripts
 
-- Install dependencies: `mvn clean install`
-- Run tests: `mvn clean test`
-- Start application: `mvn spring-boot:run`
-- Package application: `mvn package`
+- Install dependencies: `npm install`
+- Run tests: `npm test`
+- Build application: `npm build`
 
-## API Endpotins
-### POST `/api/auth/signin`
-### POST `/api/auth/signup`
