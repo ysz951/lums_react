@@ -24,7 +24,7 @@ function HeaderHooks() {
                     <span className="navbar-toggler-icon"></span>
                 </button>
                 <div className="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
+                    <ul className="navbar-nav mr-auto mt-2 mt-lg-0">
                         {(role === 'ROLE_SUPERUSER' || role === 'ROLE_ADMIN') &&
                             <li className="nav-item">
                                 <NavLink to="/person" className="nav-link" activeClassName="active"> Person </NavLink>
@@ -49,7 +49,7 @@ function HeaderHooks() {
                         }
 
                     </ul>
-                    {TokenService.hasAuthToken() && <Link onClick={handleLogoutClick} to="/">Log out</Link>}
+                    {TokenService.hasAuthToken() && <Link onClick={handleLogoutClick} to="/" className="mr-2">Log out</Link>}
                 </div>
             </nav>
         </>
