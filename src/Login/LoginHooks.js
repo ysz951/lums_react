@@ -45,23 +45,18 @@ function LoginHooks() {
             .then(res => {
                 console.log(res.data.role);
                 TokenService.saveAuthToken(res.data.accessToken);
-                // localStorage.setItem('role', res.data.role);
                 setRole(res.data.role);
                 IdleService.regiserIdleTimerResets();
                 TokenService.queueCallbackBeforeExpiry(() => {
                     AuthApiService.postRefreshToken();
                 })
-                // setTimeout(AuthApiService.postRefreshToken(), 2000)
-                // AuthApiService.postRefreshToken();
                 return res;
             })
             .then(res => {
-                // AuthApiService.postRefreshToken();
                 handleLoginSuccess();
             })
             .catch(err => {
                 setErr("Unauthorized");
-                // this.setState({err: err.response.data.error})
             });
     }
 

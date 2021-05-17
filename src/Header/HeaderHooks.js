@@ -1,24 +1,19 @@
 import { useContext } from 'react';
 import TokenService from '../services/token-service';
 import { Link, NavLink } from 'react-router-dom';
-import { useHistory, useParams } from 'react-router-dom';
 import Context from '../Context/Context';
 import IdleService from '../services/idle-service';
 function HeaderHooks() {
     const { logout, role } = useContext(Context);
-    // console.log(TokenService._getMsUntilExpiry(
-    //     TokenService.readJwtToken()
-    // ));
     const handleLogoutClick = () => {
         TokenService.clearAuthToken();
         TokenService.clearCallbackBeforeExpiry();
         IdleService.unRegisterIdleResets();
         logout();
     }
-    // const role = localStorage.getItem('role');
     return (
         <>
-            <p className="bg-light mb-0" >{role}</p>
+            <p className="bg-light mb-0 ml-4" >{role}</p>
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>

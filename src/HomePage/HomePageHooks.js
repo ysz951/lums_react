@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import MemberRESTService from '../RESTService/MemberRESTService';
-import { withRouter, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LUMSLogo from '../LUMSLogo.PNG';
 
 function HomePageHooks() {

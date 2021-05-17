@@ -17,15 +17,12 @@ const IdleService = {
   },
   /* called when a user interacts with the page */
   resetIdleTimer(ev) {
-    // console.info('event:', ev.type)
     /* remove any timeouts as the user just interacted */
     clearTimeout(_timeoutId);
-    // console.log('log out')
     /* queue the callback to happen 5 minutes from now */
     _timeoutId = setTimeout(_idleCallback, _FIVE_MINUTES_IN_MS);
   },
   regiserIdleTimerResets() {
-    // console.log('reset')
     /* register the resetIdleTimer for events when a user interacts with page */
     _notIdleEvents.forEach(event =>
       document.addEventListener(event, IdleService.resetIdleTimer, true)

@@ -3,10 +3,6 @@ import SaleRESTService from '../RESTService/SaleRESTService';
 import { Link } from 'react-router-dom';
 
 function SaleListHooks() {
-    // searchName: "",
-    //     sales: [],
-    //     orgSales: [],
-    //     filter_sale: "All"
     const role = localStorage.getItem('role');
     const [sales, setSales] = useState([]);
     const [orgSales, setOrgSales] = useState([]);
