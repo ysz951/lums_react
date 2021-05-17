@@ -30,7 +30,6 @@ function LicenseListHooks(props) {
     }
     const register = (e) => {
         e.preventDefault();
-        // console.log(this.state.dol);
         const license = {
             year: dol.slice(0, 4),
             price: price,
@@ -80,19 +79,16 @@ function LicenseListHooks(props) {
     const sortByYear = () => {
         const newList = licenses.sort((a, b) => a.year - b.year);
         setLicenses(newList);
-        // this.setState({licenses: newList});
     }
 
     const sortById = () => {
         const newList = licenses.sort((a, b) => a.id - b.id);
         setLicenses(newList);
-        // this.setState({licenses: newList});
     }
 
     const sortByPrice = () => {
         const newList = licenses.sort((a, b) => a.price - b.price);
         setLicenses(newList);
-        // this.setState({licenses: newList});
     }
 
     return (

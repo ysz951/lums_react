@@ -130,7 +130,6 @@ class UserPage extends Component {
         const { id } = this.props.match.params;
         console.log(TokenService.readJwtToken());
         const role = localStorage.getItem('role');
-        // if (role !== 'ROLE_ADMIN' && role !== 'ROLE_SUPERUSER') this.props.history.goBack();
         return (
             <>
 

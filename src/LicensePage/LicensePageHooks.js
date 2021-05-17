@@ -35,13 +35,11 @@ function LicensePageHooks () {
         if (price !== orgPrice) {
             changePrice().then(res => {
                 setOrgPrice(price);
-                // this.setState({orgPrice: this.state.price})
             }).catch(err => console.log(err.response.data))
         }
         if (active !== orgActive) {
             changeActive().then(res => {
                 setOrgActive(active);
-                // this.setState({orgActive: this.state.active})
             }).catch(err => console.log(err.response.data))
         }
     }

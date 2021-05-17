@@ -62,7 +62,6 @@ function RegisterUserHooks() {
                         <label> Name: </label>
                         <input placeholder="Name" type="text" name="userName" className="form-control"
                             value={state.userName} onChange={handleChange} required/>
-                        {/* <p className="text-danger" >{this.state.err.name}</p> */}
                         {nameErr && nameErr.length && <p className="alert alert-danger">{nameErr}</p>}
                     </div>
                     <div className="form-group">
@@ -72,7 +71,6 @@ function RegisterUserHooks() {
                             <option value="">Choose...</option>
                             <option value="ROLE_USER">User</option>
                             <option value="ROLE_ADMIN">Admin</option>
-                            {/* <option value="ROLE_SUPERUSER">Superuser</option> */}
                             <option value="ROLE_EXPERT">Expert</option>
                         </select>
                     </div>
@@ -80,7 +78,6 @@ function RegisterUserHooks() {
                         <label> Email: </label>
                         <input placeholder="Email" type="email" name="userEmail" className="form-control"
                             value={state.userEmail} onChange={handleChange} required/>
-                        {/* <p className="text-danger" >{this.state.err.email}</p> */}
                     </div>
                     <div className="form-group">
                         <label> Password: </label>

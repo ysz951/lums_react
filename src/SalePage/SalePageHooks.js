@@ -62,7 +62,6 @@ function SalePageHooks() {
 
     const changeExpirationDate = () => {
         const dateArr = state.expireDate.split("-");
-        // console.log(dateArr);
         const year = dateArr[0], month = dateArr[1], date = dateArr[2];
         return SaleRESTService.changeSaleExpiration(id, year, month, date);
     }

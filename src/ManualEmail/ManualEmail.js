@@ -21,7 +21,6 @@ class ManualEmail extends Component {
 
     componentDidMount() {
         const { id } = this.props.match.params;
-        // console.log(EMAIL_SERVICE_ID)
         MemberRESTService.lookupMemberById(id)
             .then(res => {
                 const user = res.data;
@@ -66,7 +65,6 @@ class ManualEmail extends Component {
     }
 
     onSubmit(){
-        // console.log(this.state.email);
         emailjs.send(
             EMAIL_SERVICE_ID, EMAIL_TEMPLATE_ID,{
             subject: this.state.subject,
@@ -84,7 +82,6 @@ class ManualEmail extends Component {
     }
 
     render(){
-        console.log(this.context.role);
         return(
             <div>
                 {!this.state.emailSent &&
