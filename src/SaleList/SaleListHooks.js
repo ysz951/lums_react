@@ -10,7 +10,6 @@ function SaleListHooks() {
     useEffect(() => {
         SaleRESTService.listAllSales()
             .then(res => {
-                console.log(res.data);
                 setSales(res.data);
                 setOrgSales(res.data);
             })

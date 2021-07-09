@@ -64,7 +64,6 @@ function LicenseListHooks(props) {
         e.preventDefault();
         if (filter_duration !== "All") {
             LicenseRESTService.listAllLicenseByDuration(filter_duration).then(res => {
-                console.log(res.data);
                 setLicenses(res.data);
             }).catch(err => {})
         }

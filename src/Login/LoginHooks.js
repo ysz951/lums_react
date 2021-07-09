@@ -43,7 +43,6 @@ function LoginHooks() {
     const loginAction = member => {
         MemberRESTService.memberLogin(member)
             .then(res => {
-                console.log(res.data.role);
                 TokenService.saveAuthToken(res.data.accessToken);
                 setRole(res.data.role);
                 IdleService.regiserIdleTimerResets();

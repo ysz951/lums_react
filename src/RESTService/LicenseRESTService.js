@@ -33,7 +33,6 @@ class LicenseRESTService {
     }
 
     listAllLicenseByDuration(duration) {
-        // console.log(LUMS_API_URL + `/license?duration=${duration}`);
         return axios.get(LUMS_API_URL + `/license/duration?duration=${duration}`, option);
     }
 }

@@ -25,7 +25,6 @@ function RegisterUserHooks() {
             password: state.userPassword,
             role: state.userRole
         }
-        console.log(member);
         MemberRESTService.createMember(member)
             .then(res => {
                 history.push("/person");
