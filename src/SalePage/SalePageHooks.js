@@ -19,10 +19,8 @@ function SalePageHooks() {
     useEffect(() => {
         SaleRESTService.findSaleById(id)
             .then(res => {
-                console.log(res.data);
                 const sale = res.data;
                 const expirationDate = (sale.expireDate || "").split("/").join("-");
-                console.log(expirationDate)
                 setState({
                     ...state, 
                     active: sale.active.toString(),

@@ -37,7 +37,6 @@ class UserPage extends Component {
     }
 
     goBack = () => {
-        // console.log(this.props.match.params);
         this.props.history.push("/person");
     }
 
@@ -128,7 +127,6 @@ class UserPage extends Component {
 
     render() {
         const { id } = this.props.match.params;
-        console.log(TokenService.readJwtToken());
         const role = localStorage.getItem('role');
         return (
             <>

@@ -42,7 +42,6 @@ class MemberRESTService {
         const params = new URLSearchParams({
             user_id: id
         });
-        console.log(data);
         return axios.post(LUMS_API_URL + `/users/password` + '?' + params, data, option);
     }
 

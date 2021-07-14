@@ -10,7 +10,6 @@ const option = {
 const AuthApiService = {
     
     postRefreshToken() {
-        console.log("refresh")
         return axios.post(LUMS_API_URL + '/jwt/refresh', {}, option)
           .then(res => {
             /*
