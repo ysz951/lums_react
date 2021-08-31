@@ -42,6 +42,10 @@ class SaleRESTService {
     checkSaleExpiration() {
         return axios.put(LUMS_API_URL + `/sale/expiration`);
     }
+
+    deleteSale(id) {
+        return axios.delete(LUMS_API_URL + `/sale/${id}`, option);
+    }
     
 }
 
