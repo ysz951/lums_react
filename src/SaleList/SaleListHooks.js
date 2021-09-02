@@ -26,8 +26,21 @@ function SaleListHooks() {
                 <td>{item.purchasedDate}</td>
                 <td>{item.expireDate}</td>
                 {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <td><Link className="badge badge-secondary" to={`/sale/${item.id}`}>View</Link></td>}
+                {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <td><button onClick={() => deleteSale(item.id)} className="btn btn-primary">Delete</button></td>}
             </tr>
         )
+    }
+
+    const deleteSale = id => {
+        SaleRESTService.deleteSale(id)
+            .then(res => {
+                const saleCopy = [...sales].filter(sale => sale.id !== id);
+                setSales(saleCopy);
+                setOrgSales(saleCopy);
+            })
+            .catch(err => {
+                alert(err)
+            });
     }
 
     const filter = (e) => {
@@ -93,6 +106,7 @@ function SaleListHooks() {
                         <th scope="col"><button type="button" onClick={sortByExpirationDate} 
                             className="cursor">Expired Date</button></th>
                         {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <th scope="col">View</th>}
+                        {(role === 'ROLE_ADMIN' || role === 'ROLE_SUPERUSER') &&  <th scope="col">Operation</th>}
                     </tr>
                 </thead>
                 <tbody>
